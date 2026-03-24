@@ -19,10 +19,14 @@ export class ResultadoCnpjPageComponent {
       return [];
     }
 
-    return Object.entries(resultado).map(([campo, valor]) => ({
-      campo: this.formatarCampo(campo),
-      valor: this.formatarValor(valor)
-    }));
+    const camposOcultos = new Set(['billing', 'qsa']);
+
+    return Object.entries(resultado)
+      .filter(([campo]) => !camposOcultos.has(campo.toLowerCase()))
+      .map(([campo, valor]) => ({
+        campo: this.formatarCampo(campo),
+        valor: this.formatarValor(valor)
+      }));
   });
 
   constructor() {
