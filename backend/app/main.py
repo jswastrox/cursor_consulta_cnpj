@@ -1,3 +1,4 @@
+import os
 import re
 from typing import Any
 
@@ -11,9 +12,18 @@ load_dotenv()
 
 app = FastAPI(title="API Consulta CNPJ")
 
+
+def get_cors_origins() -> list[str]:
+    configured = os.getenv("CORS_ORIGINS", "").strip()
+    if not configured:
+        return ["http://localhost:4200"]
+
+    origins = [origin.strip() for origin in configured.split(",") if origin.strip()]
+    return origins or ["http://localhost:4200"]
+
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["http://localhost:4200"],
+    allow_origins=get_cors_origins(),
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],

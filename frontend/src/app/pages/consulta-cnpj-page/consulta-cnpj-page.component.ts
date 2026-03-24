@@ -4,6 +4,7 @@ import { FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
 
 import { ConsultaCnpjService } from '../../services/consulta-cnpj.service';
+import { environment } from '../../../environments/environment';
 
 @Component({
   selector: 'app-consulta-cnpj-page',
@@ -38,7 +39,7 @@ export class ConsultaCnpjPageComponent {
 
     this.http
       .get<{ cnpj: string; resultado: Record<string, unknown> }>(
-        `http://localhost:8000/api/consulta-cnpj/${cnpjLimpo}`
+        `${environment.apiBaseUrl}/api/consulta-cnpj/${cnpjLimpo}`
       )
       .subscribe({
         next: (response) => {
