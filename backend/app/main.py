@@ -54,6 +54,12 @@ async def consulta_cnpj(cnpj: str) -> CnpjResponse:
     async with httpx.AsyncClient(timeout=30) as client:
         response = await client.get(consulta_url)
 
+    if response.status_code == 429:
+        raise HTTPException(
+            status_code=429,
+            detail="Muitas requisições à API ReceitaWS. Por favor, aguarde um minuto e tente novamente.",
+        )
+
     if response.status_code != 200:
         raise HTTPException(
             status_code=502,
