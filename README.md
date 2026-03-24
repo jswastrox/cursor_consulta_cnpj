@@ -32,3 +32,7 @@ npm start
 ```
 
 Acesse: <http://localhost:4200>
+
+## Deploy
+
+Passo a passo completo em `DEPLOY.md`.
