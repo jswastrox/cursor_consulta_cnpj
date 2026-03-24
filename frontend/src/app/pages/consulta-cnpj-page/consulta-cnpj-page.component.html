@@ -1,0 +1,27 @@
+<main class="container">
+  <section class="card">
+    <h1>Consulta de CNPJ</h1>
+    <p>Informe o CNPJ da empresa para consultar os dados cadastrais.</p>
+
+    <form (ngSubmit)="consultarCnpj()" class="form">
+      <label for="cnpj">CNPJ</label>
+      <input
+        id="cnpj"
+        name="cnpj"
+        type="text"
+        [(ngModel)]="cnpj"
+        (input)="onCnpjInput($event)"
+        placeholder="00.000.000/0000-00"
+        maxlength="18"
+      />
+
+      <button type="submit" [disabled]="loading()">
+        {{ loading() ? 'Consultando...' : 'Buscar CNPJ' }}
+      </button>
+    </form>
+
+    @if (error()) {
+      <p class="error">{{ error() }}</p>
+    }
+  </section>
+</main>

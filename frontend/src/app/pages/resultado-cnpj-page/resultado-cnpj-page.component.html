@@ -1,0 +1,32 @@
+<main class="container">
+  <section class="card">
+    <header class="header">
+      <div>
+        <h1>Resultado da Consulta</h1>
+        <p>Dados retornados para o CNPJ pesquisado.</p>
+      </div>
+      <button type="button" (click)="novaConsulta()">Nova consulta</button>
+    </header>
+
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th>Campo</th>
+            <th>Valor</th>
+          </tr>
+        </thead>
+        <tbody>
+          @for (linha of linhasTabela(); track linha.campo) {
+            <tr>
+              <td class="campo">{{ linha.campo }}</td>
+              <td class="valor">{{ linha.valor }}</td>
+            </tr>
+          }
+        </tbody>
+      </table>
+    </div>
+
+    <a routerLink="/" class="voltar">Voltar para busca</a>
+  </section>
+</main>
