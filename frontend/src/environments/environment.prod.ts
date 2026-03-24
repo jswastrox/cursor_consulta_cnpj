@@ -1,3 +1,3 @@
 export const environment = {
-  apiBaseUrl: 'https://seu-backend.onrender.com'
+  apiBaseUrl: 'https://cursor-consulta-cnpj.onrender.com/'
 };
