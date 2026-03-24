@@ -67,7 +67,6 @@ async def consulta_cnpj(cnpj: str) -> CnpjResponse:
         )
 
     resultado = response.json()
-    if resultado.get("status") == "ERROR":
-        raise HTTPException(status_code=404, detail=resultado.get("message", "CNPJ nao encontrado."))
-
+    # Removemos a exceção 404 para permitir que o frontend mostre o que a API retornou,
+    # mesmo que seja uma mensagem de erro da própria ReceitaWS.
     return CnpjResponse(cnpj=cnpj_sanitizado, resultado=resultado)
